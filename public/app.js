@@ -8,7 +8,16 @@ function renderGallery(manifest) {
   const gal = document.getElementById('gallery');
   const count = document.getElementById('count');
   gal.innerHTML = '';
+
   count.textContent = `${manifest.length} image${manifest.length === 1 ? '' : 's'}`;
+
+  if (!manifest.length) {
+    const msg = document.createElement('p');
+    msg.className = 'muted';
+    msg.textContent = 'No images found. Put files in /public/bodhiimages (exact lowercase).';
+    gal.appendChild(msg);
+    return;
+  }
 
   const frag = document.createDocumentFragment();
   manifest.forEach(({ src, alt }) => {
@@ -30,7 +39,6 @@ function renderGallery(manifest) {
 
   gal.appendChild(frag);
 }
-
 function openLightbox(src, alt) {
   const dlg = document.getElementById('lightbox');
   const img = document.getElementById('lightbox-img');
@@ -40,27 +48,20 @@ function openLightbox(src, alt) {
   cap.textContent = alt || '';
   dlg.showModal();
 }
-
 function bindLightboxClose() {
   const dlg = document.getElementById('lightbox');
   const btn = dlg.querySelector('.close');
   btn.addEventListener('click', () => dlg.close());
   dlg.addEventListener('click', (e) => {
-    // close on backdrop click
     const bounds = dlg.getBoundingClientRect();
-    const inDialog = (
-      e.clientX >= bounds.left &&
-      e.clientX <= bounds.right &&
-      e.clientY >= bounds.top &&
-      e.clientY <= bounds.bottom
-    );
+    const inDialog = e.clientX >= bounds.left && e.clientX <= bounds.right &&
+                     e.clientY >= bounds.top  && e.clientY <= bounds.bottom;
     if (!inDialog) dlg.close();
   });
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && dlg.open) dlg.close();
   });
 }
-
 (async function init() {
   bindLightboxClose();
   try {
@@ -68,7 +69,6 @@ function bindLightboxClose() {
     renderGallery(manifest);
   } catch (err) {
     console.error(err);
-    const count = document.getElementById('count');
-    count.textContent = 'Could not load images.';
+    document.getElementById('count').textContent = 'Could not load images.';
   }
 })();
