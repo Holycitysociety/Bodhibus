@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bodhi Images</title>
+  <meta name="description" content="Simple gallery that lists all images in /bodhiimages." />
+  <link rel="preload" href="styles.css" as="style" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>Bodhi Images</h1>
+    <p id="count" class="muted">Loading…</p>
+  </header>
+
+  <main>
+    <div id="gallery" class="grid"></div>
+  </main>
+
+  <!-- Native lightbox via <dialog> -->
+  <dialog id="lightbox">
+    <button class="close" aria-label="Close">&times;</button>
+    <img id="lightbox-img" alt="">
+    <p id="lightbox-alt" class="caption"></p>
+  </dialog>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
