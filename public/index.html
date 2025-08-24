@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bodhi Images</title>
-  <meta name="description" content="Simple gallery that lists all images in /bodhiimages/." />
+  <title>Bodhibus — Bodhi Images</title>
+  <meta name="description" content="Simple gallery listing all images in /bodhiimages." />
   <link rel="preload" href="styles.css" as="style" />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -15,13 +15,15 @@
   </header>
 
   <main>
-    <div id="gallery" class="grid"></div>
+    <div id="gallery" class="grid" aria-live="polite"></div>
   </main>
 
-  <!-- Native lightbox via <dialog> -->
+  <!-- Lightbox -->
   <dialog id="lightbox">
     <button class="close" aria-label="Close">&times;</button>
+    <button class="prev" aria-label="Previous">&#10094;</button>
     <img id="lightbox-img" alt="">
+    <button class="next" aria-label="Next">&#10095;</button>
     <p id="lightbox-alt" class="caption"></p>
   </dialog>
 
