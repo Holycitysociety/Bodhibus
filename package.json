@@ -1,11 +1,10 @@
 {
-  "name": "bodhiimages-gallery",
-  "version": "1.0.0",
+  "name": "bodhibus",
+  "version": "1.2.0",
   "private": true,
   "type": "module",
   "scripts": {
     "build": "node scripts/generate-images-manifest.mjs",
     "start": "npx serve public -l 5173"
-  },
-  "devDependencies": {}
+  }
 }
